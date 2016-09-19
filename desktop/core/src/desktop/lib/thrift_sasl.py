@@ -84,7 +84,7 @@ class TSaslClientTransport(TTransportBase, CReadableTransport):
       self._send_message(self.OK, response)
 
   def _send_message(self, status, body):
-    header = struct.pack(">BI", status, len(body))
+    header = struct.pack(b">BI", status, len(body))
     self._trans.write(header + body)
     self._trans.flush()
 
@@ -143,7 +143,7 @@ class TSaslClientTransport(TTransportBase, CReadableTransport):
     # two separate calls to the underlying socket object. Socket writes in
     # Python turn out to be REALLY expensive, but it seems to do a pretty
     # good job of managing string buffer operations without excessive copies
-    self._trans.write(struct.pack(">I", len(buffer)) + buffer)
+    self._trans.write(struct.pack(b">I", len(buffer)) + buffer)
 
   def read(self, sz):
     ret = self.__rbuf.read(sz)

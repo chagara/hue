@@ -775,7 +775,7 @@ def _read_parquet(fhandle, path, offset, length, stats):
         data = StringIO(fhandle.read(size))  # There is a footer
 
         dumped_data = StringIO()
-        parquet._dump(data, ParquetOptions(limit=100), out=dumped_data)
+        parquet._dump(data, ParquetOptions(limit=1000), out=dumped_data)
         dumped_data.seek(offset)
         return dumped_data.read()
     except Exception, e:

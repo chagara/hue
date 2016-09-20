@@ -771,7 +771,7 @@ def _read_avro(fhandle, path, offset, length, stats):
 
 def _read_parquet(fhandle, path, offset, length, stats):
     try:
-        size = 1 * 1024 * 1024  # Limit readable file, ParquetOptions.limit does not help
+        size = 1 * 128 * 1024 * 1024  # Limit readable file to 128MB (default block size)
         data = StringIO(fhandle.read(size))  # There is a footer
 
         dumped_data = StringIO()

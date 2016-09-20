@@ -31,14 +31,14 @@ def read_plain_int32(fo, count):
     length = 4 * count
     data = fo.read(length)
     if len(data) != length:
-        raise EOFError("Expected {} bytes but got {} bytes".format(length, len(data)))
-    res = struct.unpack(b"<{}i".format(count), data)
+        raise EOFError("Expected {} bytes but got {0} bytes".format(length, len(data)))
+    res = struct.unpack(b"<{0}i".format(count), data)
     return res
 
 
 def read_plain_int64(fo, count):
     """Reads `count` 64-bit ints using the plain encoding"""
-    return struct.unpack(b"<{}q".format(count), fo.read(8 * count))
+    return struct.unpack(b"<{0}q".format(count), fo.read(8 * count))
 
 
 def read_plain_int96(fo, count):
@@ -50,12 +50,12 @@ def read_plain_int96(fo, count):
 
 def read_plain_float(fo, count):
     """Reads `count` 32-bit floats using the plain encoding"""
-    return struct.unpack(b"<{}f".format(count), fo.read(4 * count))
+    return struct.unpack(b"<{0}f".format(count), fo.read(4 * count))
 
 
 def read_plain_double(fo, count):
     """Reads `count` 64-bit float (double) using the plain encoding"""
-    return struct.unpack(b"<{}d".format(count), fo.read(8 * count))
+    return struct.unpack(b"<{0}d".format(count), fo.read(8 * count))
 
 
 def read_plain_byte_array(fo, count):
